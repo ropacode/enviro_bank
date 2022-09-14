@@ -28,16 +28,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailLabel": MessageLookupByLibrary.simpleMessage("Email address"),
         "emailMissing":
             MessageLookupByLibrary.simpleMessage("Email is required"),
+        "failedToSignInMessage": MessageLookupByLibrary.simpleMessage(
+            "Sign in failed. Please try again"),
         "failedToSignUpMessage": MessageLookupByLibrary.simpleMessage(
             "Failed to register new user. Please try again"),
+        "noHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "passwordHint": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordLabel": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordMissing":
+            MessageLookupByLibrary.simpleMessage("Password is required"),
         "passwordRequirement": MessageLookupByLibrary.simpleMessage(
             "Passwords should be at least 8 characters long, with one uppercase letter, one digit and one special character"),
         "registeringAccountMessage": MessageLookupByLibrary.simpleMessage(
             "Registering account, please wait..."),
         "signInBtn": MessageLookupByLibrary.simpleMessage("Sign in"),
         "signUpBtn": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "signingInMessage":
+            MessageLookupByLibrary.simpleMessage("Signing in, please wait..."),
         "welcomeMessage": MessageLookupByLibrary.simpleMessage("Welcome")
       };
 }

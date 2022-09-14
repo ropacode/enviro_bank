@@ -1,8 +1,8 @@
 import 'package:enviro_bank/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
-class RegisteringAccountWidget extends StatelessWidget {
-  const RegisteringAccountWidget({Key? key}) : super(key: key);
+class SigningInWidget extends StatelessWidget {
+  const SigningInWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class RegisteringAccountWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(S.of(context).registeringAccountMessage),
+          Text(S.of(context).signingInMessage),
           const SizedBox(
             height: 16,
           ),

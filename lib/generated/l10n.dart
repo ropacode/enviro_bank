@@ -90,6 +90,16 @@ class S {
     );
   }
 
+  /// `Password is required`
+  String get passwordMissing {
+    return Intl.message(
+      'Password is required',
+      name: 'passwordMissing',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Email address`
   String get emailHint {
     return Intl.message(
@@ -150,6 +160,16 @@ class S {
     );
   }
 
+  /// `Don't have an account?`
+  String get noHaveAccount {
+    return Intl.message(
+      'Don\'t have an account?',
+      name: 'noHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Registering account, please wait...`
   String get registeringAccountMessage {
     return Intl.message(
@@ -160,11 +180,31 @@ class S {
     );
   }
 
+  /// `Signing in, please wait...`
+  String get signingInMessage {
+    return Intl.message(
+      'Signing in, please wait...',
+      name: 'signingInMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Failed to register new user. Please try again`
   String get failedToSignUpMessage {
     return Intl.message(
       'Failed to register new user. Please try again',
       name: 'failedToSignUpMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in failed. Please try again`
+  String get failedToSignInMessage {
+    return Intl.message(
+      'Sign in failed. Please try again',
+      name: 'failedToSignInMessage',
       desc: '',
       args: [],
     );

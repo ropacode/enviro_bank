@@ -1,27 +1,27 @@
 import 'package:enviro_bank/generated/l10n.dart';
 import 'package:enviro_bank/src/bloc/auth/auth_bloc.dart';
-import 'package:enviro_bank/src/bloc/sign_up/sign_up_bloc.dart';
+import 'package:enviro_bank/src/bloc/sign_in/sign_in_bloc.dart';
 import 'package:enviro_bank/ui/auth/email_widget.dart';
 import 'package:enviro_bank/ui/auth/password_widget.dart';
 import 'package:enviro_bank/ui/route_names.dart';
-import 'package:enviro_bank/ui/sign_up/sign_up_button.dart';
+import 'package:enviro_bank/ui/sign_in/sign_in_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class RegisterFormWidget extends StatefulWidget {
-  final SignUpBloc bloc;
+class SignInFormWidget extends StatefulWidget {
+  final SignInBloc bloc;
 
-  const RegisterFormWidget({
+  const SignInFormWidget({
     Key? key,
     required this.bloc,
   }) : super(key: key);
 
   @override
-  State<RegisterFormWidget> createState() => _RegisterFormWidgetState();
+  State<SignInFormWidget> createState() => _SignInFormWidgetState();
 }
 
-class _RegisterFormWidgetState extends State<RegisterFormWidget> {
+class _SignInFormWidgetState extends State<SignInFormWidget> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _emailController = TextEditingController();
@@ -29,7 +29,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SignUpBloc, AuthState>(
+    return BlocListener<SignInBloc, AuthState>(
       listenWhen: (prev, next) => next is CredentialsChangedState,
       listener: (context, state) {
         if (state is CredentialsChangedState) {
@@ -60,11 +60,13 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
               PasswordWidget(
                 controller: _passwordController,
                 bloc: widget.bloc,
+                errorMessage: S.of(context).passwordMissing,
+                validatePassword: false,
               ),
               const SizedBox(
                 height: 8,
               ),
-              SignUpButton(
+              SignInButton(
                 bloc: widget.bloc,
               ),
               const SizedBox(
@@ -74,13 +76,13 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Flexible(
-                    child: Text(S.of(context).alreadyHaveAccount),
+                    child: Text(S.of(context).noHaveAccount),
                   ),
                   TextButton(
                     onPressed: () {
-                      GoRouter.of(context).replace(RouteNames.signIn);
+                      GoRouter.of(context).replace(RouteNames.signUp);
                     },
-                    child: Text(S.of(context).signInBtn),
+                    child: Text(S.of(context).signUpBtn),
                   ),
                 ],
               ),
