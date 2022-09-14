@@ -48,7 +48,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             } else if (state is AccountCreatedState) {
               // GoRouter.of(context).replace(RouteNames.signIn);
             } else if (state is SignInSucceededState) {
-              GoRouter.of(context).replace(RouteNames.home);
+              GoRouter.of(context).replace(
+                RouteNames.home,
+                extra: {
+                  'token': state.jwtToken,
+                },
+              );
             }
           },
           buildWhen: (prev, next) =>

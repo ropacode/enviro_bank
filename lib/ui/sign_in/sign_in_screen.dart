@@ -35,7 +35,12 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               );
             } else if (state is SignInSucceededState) {
-              GoRouter.of(context).replace(RouteNames.home);
+              GoRouter.of(context).replace(
+                RouteNames.home,
+                extra: {
+                  'token': state.jwtToken,
+                },
+              );
             }
           },
           buildWhen: (prev, next) =>
