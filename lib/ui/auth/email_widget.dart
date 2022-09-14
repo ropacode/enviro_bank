@@ -1,12 +1,12 @@
 import 'package:enviro_bank/generated/l10n.dart';
-import 'package:enviro_bank/src/bloc/sign_up/sign_up_bloc.dart';
+import 'package:enviro_bank/src/bloc/auth/auth_bloc.dart';
 import 'package:flutter/material.dart';
 
-class PasswordWidget extends StatelessWidget {
+class EmailWidget extends StatelessWidget {
   final TextEditingController controller;
-  final SignUpBloc bloc;
+  final AuthBloc bloc;
 
-  const PasswordWidget({
+  const EmailWidget({
     Key? key,
     required this.controller,
     required this.bloc,
@@ -17,19 +17,17 @@ class PasswordWidget extends StatelessWidget {
     return TextFormField(
       controller: controller,
       onChanged: (text) {
-        bloc.add(PasswordChangedEvent(password: text));
+        bloc.add(EmailChangedEvent(email: text.trim()));
       },
-      obscureText: true,
       validator: (value) {
-        if (value == null || value.isEmpty || !bloc.validPassword(value)) {
-          return S.of(context).passwordRequirement;
+        if (value == null || value.trim().isEmpty) {
+          return S.of(context).emailMissing;
         }
         return null;
       },
       decoration: InputDecoration(
-        hintText: S.of(context).passwordHint,
-        labelText: S.of(context).passwordLabel,
-        errorMaxLines: 3,
+        hintText: S.of(context).emailHint,
+        labelText: S.of(context).emailLabel,
       ),
     );
   }

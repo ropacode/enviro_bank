@@ -4,12 +4,16 @@
   "signInBtn": "Sign in",
   "signUpBtn": "Sign up",
   "emailMissing": "Email is required",
+  "passwordMissing": "Password is required",
   "emailHint": "Email address",
   "emailLabel": "Email address",
   "passwordRequirement": "Passwords should be at least 8 characters long, with one uppercase letter, one digit and one special character",
   "passwordHint": "Password",
   "passwordLabel": "Password",
   "alreadyHaveAccount": "Already have an account?",
+  "noHaveAccount": "Don't have an account?",
   "registeringAccountMessage": "Registering account, please wait...",
-  "failedToSignUpMessage": "Failed to register new user. Please try again"
+  "signingInMessage": "Signing in, please wait...",
+  "failedToSignUpMessage": "Failed to register new user. Please try again",
+  "failedToSignInMessage": "Sign in failed. Please try again"
 }

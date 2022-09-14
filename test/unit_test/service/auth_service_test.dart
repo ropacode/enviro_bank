@@ -1,20 +1,22 @@
 import 'package:enviro_bank/src/bloc/sign_up/sign_up_bloc.dart';
+import 'package:enviro_bank/src/service/auth_service.dart';
 import 'package:enviro_bank/src/service/web_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
 
-import 'sign_up_service_test.mocks.dart';
+import 'auth_service_test.mocks.dart';
+
 
 @GenerateMocks([WebClient])
 void main() {
-  group('SignUpService', () {
+  group('AuthService', () {
     late WebClient webClient;
-    late SignUpService service;
+    late AuthService service;
     setUp(() {
       webClient = MockWebClient();
-      service = SignUpService(webClient: webClient);
+      service = AuthService(webClient: webClient);
     });
 
     group('registerAccount', () {
@@ -60,6 +62,51 @@ void main() {
         final response = await service.registerAccount(
             email: 'ropa@gmail.com', password: 'Password@1');
         expect(response, false);
+      });
+    });
+    group('signIn', () {
+      test('should return jwtToken when success', () async {
+        when(webClient.post(endpoint: '/users/login', body: {
+          'emailAddress': 'ropa@gmail.com',
+          'password': 'Password@1',
+        })).thenAnswer(
+          (realInvocation) => Future.value(
+            http.Response('{"jwt": "mytoken"}', 200),
+          ),
+        );
+
+        final response = await service.signIn(
+            email: 'ropa@gmail.com', password: 'Password@1');
+        expect(response, 'mytoken');
+      });
+      test('should return false when statusCode!=200', () async {
+        when(webClient.post(endpoint: '/users/login', body: {
+          'emailAddress': 'ropa@gmail.com',
+          'password': 'Password@1',
+        })).thenAnswer(
+          (realInvocation) => Future.value(
+            http.Response('{"jwt": "mytoken"}', 201),
+          ),
+        );
+
+        final response = await service.signIn(
+            email: 'ropa@gmail.com', password: 'Password@1');
+        expect(response, null);
+      });
+
+      test('should return false when success!=true', () async {
+        when(webClient.post(endpoint: '/users/login', body: {
+          'emailAddress': 'ropa@gmail.com',
+          'password': 'Password@1',
+        })).thenAnswer(
+          (realInvocation) => Future.value(
+            http.Response('{"jwt": null}', 200),
+          ),
+        );
+
+        final response = await service.signIn(
+            email: 'ropa@gmail.com', password: 'Password@1');
+        expect(response, null);
       });
     });
   });

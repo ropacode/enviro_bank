@@ -28,8 +28,8 @@ void main() {
         );
         return cubit;
       },
-      act: (InitCubit cubit) {
-        cubit.initialize();
+      act: (InitCubit cubit) async {
+        await cubit.initialize();
       },
       expect: () => <InitState>[
         const SignedInState(jwtToken: 'asdadadadwebpoemtpmbnyepdm'),
@@ -43,8 +43,8 @@ void main() {
         );
         return cubit;
       },
-      act: (InitCubit cubit) {
-        cubit.initialize();
+      act: (InitCubit cubit) async{
+        await cubit.initialize();
       },
       expect: () => <InitState>[
         const SignedOutState(),

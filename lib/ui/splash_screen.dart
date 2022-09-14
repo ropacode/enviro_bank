@@ -12,9 +12,9 @@ class SplashScreen extends StatelessWidget {
     return BlocListener<InitCubit, InitState>(
       listener: (context, state) {
         if (state is SignedOutState) {
-          GoRouter.of(context).go(RouteNames.signUp);
+          GoRouter.of(context).replace(RouteNames.signUp);
         } else if (state is SignedInState) {
-          GoRouter.of(context).go(RouteNames.home);
+          GoRouter.of(context).replace(RouteNames.home);
         }
       },
       child: const Scaffold(

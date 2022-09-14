@@ -1,32 +1,29 @@
 import 'dart:async';
-import 'dart:convert';
 
-import 'package:enviro_bank/src/service/web_client.dart';
+import 'package:enviro_bank/src/bloc/auth/auth_bloc.dart';
+import 'package:enviro_bank/src/service/auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
 
 part 'sign_up_event.dart';
 
 part 'sign_up_state.dart';
 
-part 'package:enviro_bank/src/service/sign_up_service.dart';
-
-class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
-  final SignUpService _service;
-
-  SignUpBloc({required SignUpService service})
-      : _service = service,
-        super(
-          const SignUpInitState(),
-        ) {
-    on<EmailChangedEvent>(_onEmailChangedEvent);
-    on<PasswordChangedEvent>(_onPasswordChangedEvent);
+class SignUpBloc extends AuthBloc {
+  SignUpBloc({required AuthService service})
+      : super(const SignUpInitialState(), service: service) {
     on<RegisterAccountEvent>(_onRegisterAccountEvent);
+  }
+
+  @override
+  bool validPassword(String password) {
+    return RegExp(
+            r'''^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])[A-Za-z\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$''')
+        .hasMatch(password);
   }
 
   FutureOr<void> _onRegisterAccountEvent(
     RegisterAccountEvent event,
-    Emitter<SignUpState> emit,
+    Emitter<AuthState> emit,
   ) async {
     final currState = state;
     if (currState is CredentialsChangedState) {
@@ -46,7 +43,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         ),
       );
       try {
-        final registered = await _service.registerAccount(
+        final registered = await service.registerAccount(
           email: currState.email,
           password: currState.password,
         );
@@ -57,6 +54,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
               password: currState.password,
             ),
           );
+          await signIn(emit, currState);
         } else {
           emit(
             SignUpFailedState(
@@ -75,55 +73,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       }
     } else {
       emit(const SignUpFailedState(email: '', password: ''));
-    }
-  }
-
-  FutureOr<void> _onPasswordChangedEvent(
-    PasswordChangedEvent event,
-    Emitter<SignUpState> emit,
-  ) {
-    final currState = state;
-    if (currState is CredentialsChangedState) {
-      emit(
-        currState.copyWith(
-          password: event.password,
-          canSubmit:
-              currState.email.isNotEmpty && validPassword(event.password),
-        ),
-      );
-    } else {
-      emit(
-        CredentialsChangedState(
-          password: event.password,
-        ),
-      );
-    }
-  }
-
-  bool validPassword(String password) {
-    return RegExp(
-            r'''^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])[A-Za-z\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$''')
-        .hasMatch(password);
-  }
-
-  FutureOr<void> _onEmailChangedEvent(
-    EmailChangedEvent event,
-    Emitter<SignUpState> emit,
-  ) {
-    final currState = state;
-    if (currState is CredentialsChangedState) {
-      emit(
-        currState.copyWith(
-          email: event.email,
-          canSubmit: validPassword(currState.password) && event.email.isNotEmpty,
-        ),
-      );
-    } else {
-      emit(
-        CredentialsChangedState(
-          email: event.email,
-        ),
-      );
     }
   }
 }
