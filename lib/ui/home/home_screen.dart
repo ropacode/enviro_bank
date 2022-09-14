@@ -3,8 +3,10 @@ import 'package:enviro_bank/src/bloc/home/home_bloc.dart';
 import 'package:enviro_bank/ui/home/application_form_widget.dart';
 import 'package:enviro_bank/ui/home/submitting_application_widget.dart';
 import 'package:enviro_bank/ui/home/welcome_widget.dart';
+import 'package:enviro_bank/ui/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,7 +28,9 @@ class HomeScreen extends StatelessWidget {
               return [
                 PopupMenuItem(
                   child: Text(S.of(context).signOutBtn),
-                  onTap: () {},
+                  onTap: () {
+                    context.read<HomeBloc>().add(const SignOutEvent());
+                  },
                 ),
               ];
             },
@@ -36,11 +40,14 @@ class HomeScreen extends StatelessWidget {
       body: BlocConsumer<HomeBloc, HomeState>(
         listenWhen: (prev, next) =>
             next is ApplicationApprovedState ||
+            next is SignedOutState ||
             next is ApplicationFailedState ||
             next is InvalidApplicationState,
         listener: (context, state) {
           String? content;
-          if (state is ApplicationApprovedState) {
+          if (state is SignedOutState) {
+            GoRouter.of(context).replace(RouteNames.signIn);
+          } else if (state is ApplicationApprovedState) {
             content = S.of(context).applicationApproved(
                   state.application.firstName!,
                   state.application.lastName!,
