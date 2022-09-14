@@ -28,7 +28,11 @@ class SigningOutState extends HomeState {
 class InvalidApplicationState extends HomeState {
   const InvalidApplicationState({
     Bank selectedBank = Bank.none,
-  }) : super(selectedBank: selectedBank);
+    required DateTime? collectionDate,
+  }) : super(
+          selectedBank: selectedBank,
+          collectionDate: collectionDate,
+        );
 }
 
 class ApplicationState extends HomeState {

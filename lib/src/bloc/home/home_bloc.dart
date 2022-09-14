@@ -63,7 +63,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (!application.isValid()) {
       emit(
         InvalidApplicationState(
-          selectedBank: state.selectedBank,
+          selectedBank: application.bank ?? Bank.none,
+          collectionDate: application.collectionDate,
         ),
       );
       return;

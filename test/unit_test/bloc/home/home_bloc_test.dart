@@ -58,6 +58,7 @@ void main() {
             return bloc;
           },
           act: (bloc) {
+            bloc.add(ChangeBankEvent(bank: application.bank!));
             bloc.add(
               SubmitApplicationEvent(
                 application: application.copyWith(
@@ -67,7 +68,12 @@ void main() {
             );
           },
           expect: () => <HomeState>[
-            const InvalidApplicationState(),
+            BankOrDateChangedState(
+                bank: application.bank!, collectionDate: null),
+            InvalidApplicationState(
+              collectionDate: application.collectionDate,
+              selectedBank: application.bank ?? Bank.none,
+            ),
           ],
         );
         blocTest(
@@ -76,6 +82,7 @@ void main() {
             return bloc;
           },
           act: (bloc) {
+            bloc.add(ChangeBankEvent(bank: application.bank!));
             bloc.add(
               SubmitApplicationEvent(
                 application: application.copyWith(
@@ -85,7 +92,12 @@ void main() {
             );
           },
           expect: () => <HomeState>[
-            const InvalidApplicationState(),
+            BankOrDateChangedState(
+                bank: application.bank!, collectionDate: null),
+            InvalidApplicationState(
+              collectionDate: application.collectionDate,
+              selectedBank: application.bank ?? Bank.none,
+            ),
           ],
         );
         blocTest(
@@ -94,6 +106,7 @@ void main() {
             return bloc;
           },
           act: (bloc) {
+            bloc.add(ChangeBankEvent(bank: application.bank!));
             bloc.add(
               SubmitApplicationEvent(
                 application: application.copyWith(
@@ -103,7 +116,12 @@ void main() {
             );
           },
           expect: () => <HomeState>[
-            const InvalidApplicationState(),
+            BankOrDateChangedState(
+                bank: application.bank!, collectionDate: null),
+            InvalidApplicationState(
+              collectionDate: application.collectionDate,
+              selectedBank: application.bank ?? Bank.none,
+            ),
           ],
         );
         blocTest(
@@ -112,6 +130,7 @@ void main() {
             return bloc;
           },
           act: (bloc) {
+            bloc.add(ChangeBankEvent(bank: application.bank!));
             bloc.add(
               SubmitApplicationEvent(
                 application: application.copyWith(
@@ -121,7 +140,12 @@ void main() {
             );
           },
           expect: () => <HomeState>[
-            const InvalidApplicationState(),
+            BankOrDateChangedState(
+                bank: application.bank!, collectionDate: null),
+            InvalidApplicationState(
+              collectionDate: application.collectionDate,
+              selectedBank: application.bank ?? Bank.none,
+            ),
           ],
         );
         blocTest(
@@ -130,6 +154,7 @@ void main() {
             return bloc;
           },
           act: (bloc) {
+            bloc.add(const ChangeBankEvent(bank: Bank.none));
             bloc.add(
               SubmitApplicationEvent(
                 application: application.copyWith(
@@ -139,7 +164,11 @@ void main() {
             );
           },
           expect: () => <HomeState>[
-            const InvalidApplicationState(),
+            const BankOrDateChangedState(bank: Bank.none, collectionDate: null),
+            InvalidApplicationState(
+              collectionDate: application.collectionDate,
+              selectedBank: Bank.none,
+            ),
           ],
         );
         blocTest(
@@ -148,6 +177,7 @@ void main() {
             return bloc;
           },
           act: (bloc) {
+            bloc.add(ChangeBankEvent(bank: application.bank!));
             bloc.add(
               SubmitApplicationEvent(
                 application: application.copyWith(
@@ -157,7 +187,12 @@ void main() {
             );
           },
           expect: () => <HomeState>[
-            const InvalidApplicationState(),
+            BankOrDateChangedState(
+                bank: application.bank!, collectionDate: null),
+            InvalidApplicationState(
+              collectionDate: application.collectionDate,
+              selectedBank: application.bank ?? Bank.none,
+            ),
           ],
         );
         blocTest(
@@ -166,6 +201,7 @@ void main() {
             return bloc;
           },
           act: (bloc) {
+            bloc.add(ChangeBankEvent(bank: application.bank!));
             bloc.add(
               SubmitApplicationEvent(
                 application: application.copyWith(
@@ -175,7 +211,12 @@ void main() {
             );
           },
           expect: () => <HomeState>[
-            const InvalidApplicationState(),
+            BankOrDateChangedState(
+                bank: application.bank!, collectionDate: null),
+            InvalidApplicationState(
+              collectionDate: DateTime(2022, 09, 13),
+              selectedBank: application.bank ?? Bank.none,
+            ),
           ],
         );
       });
@@ -201,6 +242,7 @@ void main() {
             return bloc;
           },
           act: (bloc) {
+            bloc.add(ChangeBankEvent(bank: application.bank!));
             bloc.add(
               SubmitApplicationEvent(
                 application: application,
@@ -208,6 +250,8 @@ void main() {
             );
           },
           expect: () => <HomeState>[
+            BankOrDateChangedState(
+                bank: application.bank!, collectionDate: null),
             SubmittingApplicationState(
               application: application,
             ),
@@ -225,6 +269,7 @@ void main() {
             return bloc;
           },
           act: (bloc) {
+            bloc.add(ChangeBankEvent(bank: application.bank!));
             bloc.add(
               SubmitApplicationEvent(
                 application: application,
@@ -232,6 +277,8 @@ void main() {
             );
           },
           expect: () => <HomeState>[
+            BankOrDateChangedState(
+                bank: application.bank!, collectionDate: null),
             SubmittingApplicationState(
               application: application,
             ),
@@ -248,6 +295,7 @@ void main() {
             return bloc;
           },
           act: (bloc) {
+            bloc.add(ChangeBankEvent(bank: application.bank!));
             bloc.add(
               SubmitApplicationEvent(
                 application: application,
@@ -255,6 +303,8 @@ void main() {
             );
           },
           expect: () => <HomeState>[
+            BankOrDateChangedState(
+                bank: application.bank!, collectionDate: null),
             SubmittingApplicationState(
               application: application,
             ),

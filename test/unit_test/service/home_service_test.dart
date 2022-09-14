@@ -31,13 +31,13 @@ void main() {
       body = {
         "amount": application.loanAmount,
         "bankAccount": {
-          "accountNumber": application.bankAccountNumber,
+          "accountNumber": int.tryParse(application.bankAccountNumber!),
           "bankName": application.bankName,
           "branchCode": 250060
         },
         "collectionDate": application.collectionDateFormatted,
         "firstName": application.firstName,
-        "idNumber": application.idNumber,
+        "idNumber": int.tryParse(application.idNumber!),
         "lastName": application.lastName
       };
     });
