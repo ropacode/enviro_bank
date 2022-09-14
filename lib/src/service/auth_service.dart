@@ -1,8 +1,9 @@
-
 import 'dart:convert';
 
+import 'package:enviro_bank/src/config.dart';
 import 'package:enviro_bank/src/service/web_client.dart';
 import 'package:equatable/equatable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService extends Equatable {
   final WebClient _webClient;
@@ -24,9 +25,13 @@ class AuthService extends Equatable {
     );
     if (response?.statusCode != 200) return null;
     final decoded = json.decode(response!.body);
-    return decoded['jwt'];
+    final token = decoded['jwt'];
+    if (token != null) {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(Config.tokenKey, token);
+    }
+    return token;
   }
-
 
   Future<bool> registerAccount({
     required String email,
@@ -43,7 +48,6 @@ class AuthService extends Equatable {
     final decoded = json.decode(response!.body);
     return decoded['success'] == true;
   }
-
 
   @override
   List<Object> get props => [_webClient];

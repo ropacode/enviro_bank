@@ -1,4 +1,5 @@
 import 'package:enviro_bank/src/bloc/init/init_cubit.dart';
+import 'package:enviro_bank/src/config.dart';
 import 'package:enviro_bank/ui/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,12 @@ class SplashScreen extends StatelessWidget {
         if (state is SignedOutState) {
           GoRouter.of(context).replace(RouteNames.signUp);
         } else if (state is SignedInState) {
-          GoRouter.of(context).replace(RouteNames.home);
+          GoRouter.of(context).replace(
+            RouteNames.home,
+            extra: {
+              'token': state.jwtToken,
+            },
+          );
         }
       },
       child: const Scaffold(

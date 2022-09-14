@@ -80,6 +80,16 @@ class S {
     );
   }
 
+  /// `Sign out`
+  String get signOutBtn {
+    return Intl.message(
+      'Sign out',
+      name: 'signOutBtn',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Email is required`
   String get emailMissing {
     return Intl.message(
@@ -205,6 +215,317 @@ class S {
     return Intl.message(
       'Sign in failed. Please try again',
       name: 'failedToSignInMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get homeTitle {
+    return Intl.message(
+      'Home',
+      name: 'homeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply for a loan`
+  String get applyForLoan {
+    return Intl.message(
+      'Apply for a loan',
+      name: 'applyForLoan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loan application form`
+  String get loanApplication {
+    return Intl.message(
+      'Loan application form',
+      name: 'loanApplication',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply`
+  String get apply {
+    return Intl.message(
+      'Apply',
+      name: 'apply',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First name`
+  String get firstName {
+    return Intl.message(
+      'First name',
+      name: 'firstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name`
+  String get lastName {
+    return Intl.message(
+      'Last name',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid first name`
+  String get firstNameMissing {
+    return Intl.message(
+      'Please enter a valid first name',
+      name: 'firstNameMissing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid last name`
+  String get lastNameMissing {
+    return Intl.message(
+      'Please enter a valid last name',
+      name: 'lastNameMissing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID number`
+  String get idNumber {
+    return Intl.message(
+      'ID number',
+      name: 'idNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid ID number`
+  String get idNumberMissing {
+    return Intl.message(
+      'Please enter valid ID number',
+      name: 'idNumberMissing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bank account number`
+  String get bankAccountNumber {
+    return Intl.message(
+      'Bank account number',
+      name: 'bankAccountNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid account number`
+  String get bankAccountNumberMissing {
+    return Intl.message(
+      'Please enter valid account number',
+      name: 'bankAccountNumberMissing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loan amount`
+  String get loanAmount {
+    return Intl.message(
+      'Loan amount',
+      name: 'loanAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid loan amount`
+  String get loanAmountMissing {
+    return Intl.message(
+      'Please enter valid loan amount',
+      name: 'loanAmountMissing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select bank`
+  String get selectBank {
+    return Intl.message(
+      'Select bank',
+      name: 'selectBank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please elect a bank`
+  String get bankMissing {
+    return Intl.message(
+      'Please elect a bank',
+      name: 'bankMissing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ABSA`
+  String get absa {
+    return Intl.message(
+      'ABSA',
+      name: 'absa',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Capitec`
+  String get capitec {
+    return Intl.message(
+      'Capitec',
+      name: 'capitec',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FNB`
+  String get fnb {
+    return Intl.message(
+      'FNB',
+      name: 'fnb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Investec Limited`
+  String get investec {
+    return Intl.message(
+      'Investec Limited',
+      name: 'investec',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nedbank Limited`
+  String get nedbank {
+    return Intl.message(
+      'Nedbank Limited',
+      name: 'nedbank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Standard Bank`
+  String get standardBank {
+    return Intl.message(
+      'Standard Bank',
+      name: 'standardBank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VBS`
+  String get vbs {
+    return Intl.message(
+      'VBS',
+      name: 'vbs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Warning: refer to compliance`
+  String get vbsWarning {
+    return Intl.message(
+      'Warning: refer to compliance',
+      name: 'vbsWarning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select debit order date`
+  String get pickCollectionDate {
+    return Intl.message(
+      'Select debit order date',
+      name: 'pickCollectionDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debit order date`
+  String get collectionDate {
+    return Intl.message(
+      'Debit order date',
+      name: 'collectionDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submitting application, please wait...`
+  String get submittingApplicationMessage {
+    return Intl.message(
+      'Submitting application, please wait...',
+      name: 'submittingApplicationMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry, your loan application has been declined this time`
+  String get applicationDenied {
+    return Intl.message(
+      'Sorry, your loan application has been declined this time',
+      name: 'applicationDenied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations {firstName} {lastName}! Your loan for {loanAmount} has been approved`
+  String applicationApproved(
+      Object firstName, Object lastName, Object loanAmount) {
+    return Intl.message(
+      'Congratulations $firstName $lastName! Your loan for $loanAmount has been approved',
+      name: 'applicationApproved',
+      desc: '',
+      args: [firstName, lastName, loanAmount],
+    );
+  }
+
+  /// `Your application is missing required fields. Please make sure you provide all required data`
+  String get missingData {
+    return Intl.message(
+      'Your application is missing required fields. Please make sure you provide all required data',
+      name: 'missingData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get okBtn {
+    return Intl.message(
+      'OK',
+      name: 'okBtn',
       desc: '',
       args: [],
     );

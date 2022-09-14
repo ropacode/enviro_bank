@@ -1,13 +1,13 @@
-import 'package:enviro_bank/src/bloc/sign_up/sign_up_bloc.dart';
 import 'package:enviro_bank/src/service/auth_service.dart';
 import 'package:enviro_bank/src/service/web_client.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'auth_service_test.mocks.dart';
-
 
 @GenerateMocks([WebClient])
 void main() {
@@ -15,6 +15,7 @@ void main() {
     late WebClient webClient;
     late AuthService service;
     setUp(() {
+      SharedPreferences.setMockInitialValues({});
       webClient = MockWebClient();
       service = AuthService(webClient: webClient);
     });

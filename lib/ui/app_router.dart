@@ -1,3 +1,4 @@
+import 'package:enviro_bank/src/bloc/home/home_bloc.dart';
 import 'package:enviro_bank/src/bloc/init/init_cubit.dart';
 import 'package:enviro_bank/src/bloc/sign_in/sign_in_bloc.dart';
 import 'package:enviro_bank/src/bloc/sign_up/sign_up_bloc.dart';
@@ -61,7 +62,18 @@ abstract class AppRouter {
           GoRoute(
             path: RouteNames.home,
             builder: (BuildContext context, GoRouterState state) {
-              return const HomeScreen();
+              var extra = state.extra as Map<String, String>;
+              return BlocProvider<HomeBloc>(
+                create: (context) => HomeBloc(
+                  service: HomeService(
+                    webClient: WebClient(
+                      baseUrl: Config.baseUrl,
+                      jwtToken: extra['token'],
+                    ),
+                  ),
+                ),
+                child: const HomeScreen(),
+              );
             },
           ),
         ],
